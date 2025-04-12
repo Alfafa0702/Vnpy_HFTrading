@@ -9,3 +9,9 @@ Binance 永续合约 策略-预测（强化学习—）：https://github.com/jin
 vnpy_binance的框架：
 https://github.com/veighna-global/vnpy_binance  
 https://blog.csdn.net/m0_58598240/article/details/127700332  
+
+
+Binance 永续合约 策略:[构建针对短周期预测模型+强化学习](https://github.com/jinwukong/btc_-perpetual)
+vnpy_binance的框架：
+[Binance trading gateway for VeighNa Evo](https://github.com/veighna-global/vnpy_binance)
+[数据下载+环境安装](https://blog.csdn.net/m0_58598240/article/details/127700332)
