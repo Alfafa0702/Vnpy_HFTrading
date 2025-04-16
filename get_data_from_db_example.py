@@ -30,6 +30,7 @@ for table in tables:
 # 关闭数据库连接
 conn.close()
 '''
+
 # 连接到 SQLite 数据库
 conn = sqlite3.connect('bitcoin_data.db')
 cursor = conn.cursor()
