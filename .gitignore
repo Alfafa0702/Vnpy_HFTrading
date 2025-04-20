@@ -1,0 +1,5 @@
+# "bitcoin_data.db" 
+bitcoin_data.db
+binance-public-data/*
+final_feature_df_test.csv
+final_feature_df_train.csv
