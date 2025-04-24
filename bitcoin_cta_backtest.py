@@ -77,7 +77,7 @@ class BitcoinLgbStrategy(CtaTemplate):
 
     # 定义参数
     threshold = 0.00015          # 预测阈值
-    min_holding_minutes = 15     # 最小持仓时间（分钟）
+    min_holding_minutes = 30     # 最小持仓时间（分钟）
     
     # 定义变量
     current_pos = 0              # 当前持仓
@@ -183,9 +183,9 @@ class BitcoinLgbStrategy(CtaTemplate):
             print(f"获取特征时发生错误: {str(e)}")
             return None
 
-    def get_trading_volume(self, price):
+    def get_trading_volume(self, price): # 先弃用
         """计算可交易数量"""
-        capital = self.cta_engine.capital
+        capital = self.cta_engine.capital # !!这里的capital根本不对，并不是balance
         # 使用50%的资金进行交易，留50%作为缓冲
         available_capital = capital * 0.5
         volume = available_capital / price
@@ -208,6 +208,7 @@ class BitcoinLgbStrategy(CtaTemplate):
     def on_bar(self, bar: BarData):
         """K线更新回调"""
         self.am.update_bar(bar)
+        self.trading_target = 0.02
         if not self.am.inited:
             return
             
@@ -229,14 +230,14 @@ class BitcoinLgbStrategy(CtaTemplate):
                     return
                 
                 # 计算交易数量
-                trading_volume = self.get_trading_volume(bar.close_price)
+                trading_volume = self.trading_target - self.current_pos
                 
                 # 交易逻辑
                 if prediction > self.threshold and self.current_pos <= 0:
                     # 预测上涨，做多
                     if self.current_pos < 0:
                         self.cover(bar.close_price, abs(self.current_pos))  # 平空
-                        self.buy(bar.close_price, trading_volume)  # 做多
+                        self.buy(bar.close_price, abs(trading_volume))  # 做多
                     else:
                         self.buy(bar.close_price, trading_volume)  # 做多
                     self.last_entry_time = bar.datetime  # 记录开仓时间
@@ -246,7 +247,7 @@ class BitcoinLgbStrategy(CtaTemplate):
                     # 预测下跌，做空
                     if self.current_pos > 0:
                         self.sell(bar.close_price, abs(self.current_pos))  # 平多
-                        self.short(bar.close_price, trading_volume)  # 做空
+                        self.short(bar.close_price, abs(trading_volume))  # 做空
                     else:
                         self.short(bar.close_price, trading_volume)  # 做空
                     self.last_entry_time = bar.datetime  # 记录开仓时间
@@ -255,9 +256,9 @@ class BitcoinLgbStrategy(CtaTemplate):
                 elif abs(prediction) < self.threshold and self.current_pos != 0:
                     # 预测震荡，平仓
                     if self.current_pos > 0:
-                        self.sell(bar.close_price, abs(self.current_pos))
+                        self.sell(bar.close_price, abs(self.current_pos)) # 平多
                     else:
-                        self.cover(bar.close_price, abs(self.current_pos))
+                        self.cover(bar.close_price, abs(self.current_pos)) # 平空
                     self.last_entry_time = None  # 清除开仓时间
                     self.last_trade_time = bar.datetime  # 记录交易时间
                     
