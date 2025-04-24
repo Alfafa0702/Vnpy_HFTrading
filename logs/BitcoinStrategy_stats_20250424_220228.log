@@ -1,0 +1,30 @@
+2025-04-24 22:02:28,516 - BitcoinStrategy_stats - INFO - 
+==================================================
+回测统计信息：
+2025-04-24 22:02:28,516 - BitcoinStrategy_stats - INFO - start_date: 
+2025-04-24 22:02:28,516 - BitcoinStrategy_stats - INFO - end_date: 
+2025-04-24 22:02:28,518 - BitcoinStrategy_stats - INFO - total_days: 0
+2025-04-24 22:02:28,518 - BitcoinStrategy_stats - INFO - profit_days: 0
+2025-04-24 22:02:28,518 - BitcoinStrategy_stats - INFO - loss_days: 0
+2025-04-24 22:02:28,518 - BitcoinStrategy_stats - INFO - capital: 100000
+2025-04-24 22:02:28,519 - BitcoinStrategy_stats - INFO - end_balance: 0
+2025-04-24 22:02:28,519 - BitcoinStrategy_stats - INFO - max_drawdown: 0
+2025-04-24 22:02:28,519 - BitcoinStrategy_stats - INFO - max_ddpercent: 0
+2025-04-24 22:02:28,519 - BitcoinStrategy_stats - INFO - max_drawdown_duration: 0
+2025-04-24 22:02:28,520 - BitcoinStrategy_stats - INFO - total_net_pnl: 0
+2025-04-24 22:02:28,520 - BitcoinStrategy_stats - INFO - daily_net_pnl: 0
+2025-04-24 22:02:28,520 - BitcoinStrategy_stats - INFO - total_commission: 0
+2025-04-24 22:02:28,520 - BitcoinStrategy_stats - INFO - daily_commission: 0
+2025-04-24 22:02:28,520 - BitcoinStrategy_stats - INFO - total_slippage: 0
+2025-04-24 22:02:28,521 - BitcoinStrategy_stats - INFO - daily_slippage: 0
+2025-04-24 22:02:28,521 - BitcoinStrategy_stats - INFO - total_turnover: 0
+2025-04-24 22:02:28,521 - BitcoinStrategy_stats - INFO - daily_turnover: 0
+2025-04-24 22:02:28,521 - BitcoinStrategy_stats - INFO - total_trade_count: 0
+2025-04-24 22:02:28,523 - BitcoinStrategy_stats - INFO - daily_trade_count: 0
+2025-04-24 22:02:28,523 - BitcoinStrategy_stats - INFO - total_return: 0
+2025-04-24 22:02:28,523 - BitcoinStrategy_stats - INFO - annual_return: 0
+2025-04-24 22:02:28,523 - BitcoinStrategy_stats - INFO - daily_return: 0
+2025-04-24 22:02:28,523 - BitcoinStrategy_stats - INFO - return_std: 0
+2025-04-24 22:02:28,523 - BitcoinStrategy_stats - INFO - sharpe_ratio: 0
+2025-04-24 22:02:28,523 - BitcoinStrategy_stats - INFO - ewm_sharpe: 0
+2025-04-24 22:02:28,523 - BitcoinStrategy_stats - INFO - return_drawdown_ratio: 0
