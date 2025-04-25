@@ -1,6 +1,10 @@
 # Vnpy_HFTrading
 This is MFE5210 25Spring Project
 
+# Necessary large data files and results
+链接: https://pan.baidu.com/s/1enmSmYrYBiK8PpfzRWezOQ?pwd=2jap 提取码: 2jap  
+包含了spot data数据库、回测所需的测试集特征及趋势数据、回测策略日志、模拟盘演示视频。
+
 # Get Spot Data from Binance
 利用Binance的binance-public-data获取比特币历史(2017.7)以来的快照(Klines)数据，数据频率为1m、3m、5m、15m，数据为24h连续数据，快照数据包括：
 | Open time | Open | High | Low | Close | Volume | Close time | Quote asset volume | Number of trades | Taker buy base asset volume | Taker buy quote asset volume | Ignore |
