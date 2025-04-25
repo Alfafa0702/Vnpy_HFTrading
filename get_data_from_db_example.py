@@ -4,6 +4,11 @@
 import sqlite3
 import datetime
 import pandas as pd
+<<<<<<< HEAD
+
+=======
+'''
+>>>>>>> 49a73e33990c0b5106c005b2e6e1c365890485a6
 # 查看db中的表和表字段
 import sqlite3
 
@@ -56,4 +61,7 @@ print(df.head())
 
 # 关闭数据库连接
 conn.close()
+<<<<<<< HEAD
 '''
+=======
+>>>>>>> 49a73e33990c0b5106c005b2e6e1c365890485a6
