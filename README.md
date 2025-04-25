@@ -46,6 +46,7 @@ print(df.head())
 # 关闭数据库连接
 conn.close()
 ```
+<<<<<<< HEAD
 
 # 回测
 ```bash
@@ -207,6 +208,8 @@ signal = "看多" if prediction > threshold else "看空" if prediction < -thres
 
 ![策略C回测结果](target0.02_30min_万3_thr0.03.png)
 
+=======
+>>>>>>> 49a73e33990c0b5106c005b2e6e1c365890485a6
 ## Reference
 b站：vnpy数字货币高频交易视频教程[bilibili](https://www.bilibili.com/video/BV1ze4y1G743/)  
 网易云课程：51bitquant最新版的[《VNPY数字货币量化交易从零到实盘》](https://study.163.com/course/introduction/1210904816.htm?inLoc=ss_sslx_VNPY%E6%95%B0%E5%AD%97%E8%B4%A7%E5%B8%81%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E4%BB%8E%E9%9B%B6%E5%88%B0%E5%AE%9E%E7%9B%98&from=study)  

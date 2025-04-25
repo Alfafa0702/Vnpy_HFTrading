@@ -75,4 +75,9 @@ for freq in data_freq:
 
     # 提交事务并关闭连接
     conn.commit()
+<<<<<<< HEAD
     conn.close()  
+=======
+    conn.close()
+    
+>>>>>>> 49a73e33990c0b5106c005b2e6e1c365890485a6
