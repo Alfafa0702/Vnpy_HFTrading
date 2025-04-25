@@ -52,23 +52,22 @@ class BacktestingEngine(BaseEngine):
         super().__init__()
         self.history_data = []
         
-    def load_bars(self, bars_or_days: list[BarData] | int) -> None:
+    def load_bars(self, bars: list[BarData] | int) -> None:
         """加载K线数据
         
         参数:
-            bars_or_days: 如果是list[BarData]，则直接加载这些K线数据
+            bars: 如果是list[BarData]，则直接加载这些K线数据
                          如果是int，则加载指定天数的历史数据
         """
-        if isinstance(bars_or_days, list):
+        if isinstance(bars, list):
             # 直接加载K线数据列表
             self.history_data.clear()  # 清除之前的数据
-            self.history_data.extend(bars_or_days)
-            print(f"成功加载{len(bars_or_days)}条K线数据")
+            self.history_data.extend(bars)
+            print(f"成功加载{len(bars)}条K线数据")
         else:
             # 加载指定天数的历史数据
-            days = bars_or_days
+            days = bars
             print(f"加载{days}天的历史数据")
-            # 这里我们不需要实际实现，因为我们已经在初始化时加载了所有数据
 
 class BitcoinLgbStrategy(CtaTemplate):
     """基于LGBM的比特币CTA策略"""
@@ -76,7 +75,7 @@ class BitcoinLgbStrategy(CtaTemplate):
     author = "ZHOU Yixin"
 
     # 定义参数
-    threshold = 0.00015          # 预测阈值
+    threshold = 0.0003         # 预测阈值
     min_holding_minutes = 30     # 最小持仓时间（分钟）
     
     # 定义变量
@@ -107,6 +106,10 @@ class BitcoinLgbStrategy(CtaTemplate):
         try:
             features_path = os.path.join('all_test_features', 'all_test_features.csv')
             self.features_df = pd.read_csv(features_path)
+            trend_path = os.path.join('all_test_features', 'test_trend.csv')
+            self.trend_df = pd.read_csv(trend_path)
+            self.trend_df['datetime'] = pd.to_datetime(self.trend_df['datetime'], format='%Y/%m/%d %H:%M').dt.strftime('%Y-%m-%d %H:%M:%S')
+            self.features_df = pd.merge(self.features_df,self.trend_df,on='datetime', how='inner')
             self.features_df['datetime'] = pd.to_datetime(self.features_df['datetime'])
             self.features_df.set_index('datetime', inplace=True)
             print("成功加载特征数据")
@@ -173,7 +176,7 @@ class BitcoinLgbStrategy(CtaTemplate):
                 # 只获取特征列的数据并确保格式正确
                 feature_values = current_data[self.feature_columns].values
                 feature_values = feature_values.reshape(1, -1).astype(np.float32)
-                return feature_values
+                return feature_values, current_data['trend']
                 
             except KeyError:
                 print(f"警告：在特征数据中找不到时间点 {dt}")
@@ -213,12 +216,12 @@ class BitcoinLgbStrategy(CtaTemplate):
             return
             
         # 获取特征并预测
-        features = self.get_features(bar)
+        features,trend = self.get_features(bar)
         if features is not None:
             try:
                 if self.model is None:
                     raise ValueError("模型未正确加载！")
-                prediction = self.model.predict(features)[0]
+                prediction = self.model.predict(features)[0] + trend
                 
                 # 输出预测信号
                 signal = "看多" if prediction > self.threshold else "看空" if prediction < -self.threshold else "震荡"
@@ -226,8 +229,8 @@ class BitcoinLgbStrategy(CtaTemplate):
                 self.logger.info(msg)
                 
                 # 检查是否可以交易
-                if not self.can_trade(bar):
-                    return
+                # if not self.can_trade(bar):
+                #     return
                 
                 # 计算交易数量
                 trading_volume = self.trading_target - self.current_pos
@@ -311,10 +314,9 @@ def run_backtesting():
     # 加载特征数据并转换为K线数据
     features_path = os.path.join('all_test_features', 'all_test_features.csv')
     features_df = pd.read_csv(features_path)
-    
     # 确保datetime列的格式正确
     features_df['datetime'] = pd.to_datetime(features_df['datetime']).dt.floor('min')  # 向下取整到分钟
-    
+
     # 创建K线数据
     bars = []
     for _, row in features_df.iterrows():
