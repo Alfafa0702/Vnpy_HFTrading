@@ -92,11 +92,11 @@ conn.close()
 - 三分类：15分钟收益率的大于阈值为2，小于－阈值为0，区间为1，作为标签
 
 ## LSTM
-使用BTC 1 min 快照数据的原始参数作为特征：
-Open, High, Low, Close, Volume, Quote asset volume, Number of trades, Taker buy base asset volume, Taker buy quote asset volume
-再利用120分钟数据序列预测后15分钟数据序列
+- 使用BTC 1 min 快照数据的原始参数作为特征：
+- Open, High, Low, Close, Volume, Quote asset volume, Number of trades, Taker buy base asset volume, Taker buy quote asset volume
+- 再利用120分钟数据序列构建LSTM模型预测后15分钟数据序列，计算收益率来判断准确性
 
-##因为其他模型效果均不是很好，这是只选择最初的LGBM模型用于回测
+## 因为其他模型效果均不是很好，这是只选择最初的LGBM模型用于回测
   
 # 回测
 ```bash
