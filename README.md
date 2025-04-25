@@ -88,10 +88,16 @@ conn.close()
 # Other model（未回测）
 ## LGBM
 使用BTC 1 min 快照数据进行特征工程和模型训练，使用上述LGBM模型相同的特征，标签选择有所区别：
-- 二分类：收益率的正负划分为1/-1作为标签
-- 三分类：收益率的大于阈值为2，小于－阈值为0，区间为1，作为标签
+- 二分类：15分钟收益率的正负划分为1/-1作为标签
+- 三分类：15分钟收益率的大于阈值为2，小于－阈值为0，区间为1，作为标签
 
+## LSTM
+使用BTC 1 min 快照数据的原始参数作为特征：
+Open, High, Low, Close, Volume, Quote asset volume, Number of trades, Taker buy base asset volume, Taker buy quote asset volume
+再利用120分钟数据序列预测后15分钟数据序列
 
+##因为其他模型效果均不是很好，这是只选择最初的LGBM模型用于回测
+  
 # 回测
 ```bash
 python -i bitcoin_cta_backtest.py
