@@ -277,10 +277,10 @@ python run.py
 ```
 可根据需要修改生成的app,随后运行启动图形化界面：
 
-![策略监控](strategy.png)
+![策略监控](GUI.png)
 以及在策略界面可监控运行情况:
 
-![图形化界面](GUI.png)
+![图形化界面](strategy.png)
 ## Reference
 b站：vnpy数字货币高频交易视频教程[bilibili](https://www.bilibili.com/video/BV1ze4y1G743/)  
 网易云课程：51bitquant最新版的[《VNPY数字货币量化交易从零到实盘》](https://study.163.com/course/introduction/1210904816.htm?inLoc=ss_sslx_VNPY%E6%95%B0%E5%AD%97%E8%B4%A7%E5%B8%81%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E4%BB%8E%E9%9B%B6%E5%88%B0%E5%AE%9E%E7%9B%98&from=study)  
