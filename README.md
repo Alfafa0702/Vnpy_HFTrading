@@ -1,7 +1,7 @@
 # Vnpy_HFTrading
 This is MFE5210 25Spring Project
 
-## Get Spot Data from Binance
+# Get Spot Data from Binance
 利用Binance的binance-public-data获取比特币历史(2017.7)以来的快照(Klines)数据，数据频率为1m、3m、5m、15m，数据为24h连续数据，快照数据包括：
 | Open time | Open | High | Low | Close | Volume | Close time | Quote asset volume | Number of trades | Taker buy base asset volume | Taker buy quote asset volume | Ignore |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
