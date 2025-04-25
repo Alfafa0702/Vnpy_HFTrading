@@ -1,0 +1,11 @@
+# "bitcoin_data.db" 
+bitcoin_data.db
+binance-public-data/*
+final_feature_df_test.csv
+final_feature_df_train.csv
+all_train_features.csv
+all_test_features.csv
+test_trend_per_minute.csv
+train_trend_per_minute.csv
+lgbm_model.txt
+lgbm_model_selected.txt

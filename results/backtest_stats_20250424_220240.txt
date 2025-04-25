@@ -1,0 +1,27 @@
+start_date: 
+end_date: 
+total_days: 0
+profit_days: 0
+loss_days: 0
+capital: 100000
+end_balance: 0
+max_drawdown: 0
+max_ddpercent: 0
+max_drawdown_duration: 0
+total_net_pnl: 0
+daily_net_pnl: 0
+total_commission: 0
+daily_commission: 0
+total_slippage: 0
+daily_slippage: 0
+total_turnover: 0
+daily_turnover: 0
+total_trade_count: 0
+daily_trade_count: 0
+total_return: 0
+annual_return: 0
+daily_return: 0
+return_std: 0
+sharpe_ratio: 0
+ewm_sharpe: 0
+return_drawdown_ratio: 0
