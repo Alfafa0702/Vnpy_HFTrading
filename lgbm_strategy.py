@@ -46,7 +46,7 @@ class LgbmStrategy(StrategyTemplate):
 
         self.bar_dt: datetime = None
 
-        '''注意这里的size参数必须大于等于我们的策略中用到的K线长度'''
+
         self.am: ArrayManager = ArrayManager(size=24*4*4*4*4)
         '''初始化策略时加载的K线长度'''
         self.load_bars(days=5, interval=Interval.MINUTE)
@@ -135,7 +135,8 @@ class LgbmStrategy(StrategyTemplate):
         features.append(di[1])
         X = np.array(features).reshape(1, -1)
         y_pred = self.model.predict(X)
-        signal = y_pred[-1]
+        signal = y_pred[-1] + self.am.trend_signal_offset()
+
         if signal > 0.00015:
             signal = 1
         elif signal < -0.00015:
