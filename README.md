@@ -241,6 +241,40 @@ signal = "看多" if prediction > threshold else "看空" if prediction < -thres
 
 ![策略C回测结果](target0.02_30min_万3_thr0.03.png)
 
+# 模拟盘
+```bash
+python -i lgbm_strategy.py
+```
+- 模拟盘主程序：`lgbm_strategy.py`
+- 修改的策略通用文件：
+  - `utility.py`：主要修改参数类的数据类型, 增加了几个指标计算等
+- 模型文件：`lgbm_model.txt`
+
+## 模拟盘说明
+本项目支持模拟交易，用于验证策略在真实市场环境下的表现。模拟盘部分主要包括以下内容：
+
+### 1. 数据源
+- 通过 Binance 实时 FUTURE TESTNET API 获取 BTCUSDT 的模拟 K线和成交数据。
+- 数据流与回测数据结构保持一致，便于策略无缝切换。
+
+### 2. 策略执行
+- 使用 `lgbm_strategy` 策略逻辑。
+- 实时接收新行情后，自动进行特征工程处理，并调用已训练好的 LGBM 模型生成预测信号。
+- 根据信号和持仓状态，自动模拟下单、平反手交易等操作。
+
+### 3. 日志与监控
+- 所有交易信号、成交明细、资金变化均记录日志，便于后续分析。
+- 支持通过命令行或 Web 界面实时查看模拟盘运行状态。
+
+### 4. 启动方式
+运行模拟盘主程序，在vnpy_evo的示例文件夹中：
+```bash
+python run.py
+```
+可根据需要修改生成的app,随后运行启动图形化界面：
+07dd4750852bf37402e7c5dff505783.png
+以及在策略界面可监控运行情况:
+ddc277958c7821f5a9a84b972bb19de.png
 ## Reference
 b站：vnpy数字货币高频交易视频教程[bilibili](https://www.bilibili.com/video/BV1ze4y1G743/)  
 网易云课程：51bitquant最新版的[《VNPY数字货币量化交易从零到实盘》](https://study.163.com/course/introduction/1210904816.htm?inLoc=ss_sslx_VNPY%E6%95%B0%E5%AD%97%E8%B4%A7%E5%B8%81%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E4%BB%8E%E9%9B%B6%E5%88%B0%E5%AE%9E%E7%9B%98&from=study)  

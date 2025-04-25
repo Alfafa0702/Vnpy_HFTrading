@@ -1,9 +1,3 @@
-'''
-注意事项:
-1.运行中变量绝不可有日期或者bool等不可保存为json的
-'''
-
-
 from numpy import float64
 from vnpy_novastrategy import (
     StrategyTemplate,
@@ -18,7 +12,7 @@ import lightgbm as lgb
 import joblib
 import numpy as np
 
-model_path = r'D:\anaconda3\envs\vnpy_evo_py3.12\Lib\site-packages\vnpy_novastrategy\strategies\ml_models\lgbm_model_selected.txt'
+model_path = r'lgbm_model_selected.txt'
 
 class LgbmStrategy(StrategyTemplate):
     """LGBM strategy"""
@@ -43,10 +37,7 @@ class LgbmStrategy(StrategyTemplate):
         """Callback when strategy is inited"""
         self.is_inited = False
         self.trading_symbol: str = self.vt_symbols[0]
-
         self.bar_dt: datetime = None
-
-
         self.am: ArrayManager = ArrayManager(size=24*4*4*4*4)
         '''初始化策略时加载的K线长度'''
         self.load_bars(days=5, interval=Interval.MINUTE)
